@@ -28,7 +28,8 @@ class App extends Component {
       availableCards.push(cards.liquid);
     }
 
-    if(employmentStatus === 'Student'){
+    if(employmentStatus === 2){
+      availableCards.pop();
       availableCards.push(cards.studentLife);
     }
     

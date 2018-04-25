@@ -21,7 +21,7 @@ class Card extends React.Component {
 				<p>Apr - {details.apr}%</p>
 				<p>Balance Transfer Duration - {details.btod} months</p>
 				<p>Purchase Offer Duration - {details.pod} months</p>
-				<p>Credit Available - {details.credit}</p>
+				<p>Credit Available - £{details.credit}</p>
 			</div>
 	  );
 	}
