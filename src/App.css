@@ -2,7 +2,11 @@
   text-align: center;
 }
 
-.fields {
+.cards-dashboard {
 	display: flex;
 	flex-direction: row;
+}
+
+.card {
+	margin-right: 10%;
 }
