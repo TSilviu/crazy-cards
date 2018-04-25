@@ -17,13 +17,34 @@ export default class Form extends Component {
       annualIncome: '',
       employmentStatus: '',
       houseNumber: '',
-      postcode: ''
-		}
+      postcode: '',
+      errorText: ''
+		};
 		
     this.processForm = this.processForm.bind(this);
+    this.validateForm = this.validateForm.bind(this);
     this.handleChangeTitle = this.handleChangeTitle.bind(this);
     this.handleChangeTextField = this.handleChangeTextField.bind(this);
     this.handleChangeEmpStatus = this.handleChangeEmpStatus.bind(this);
+	}
+
+	validateForm(details) {
+		const annualIncomeNum = 
+			parseInt(details.annualIncome, 10);
+
+		if(
+  		details.firstName === ''   			||
+  		details.lastName === ''    			||
+  		details.dateOfBirth === {} 			||
+  		details.annualIncome === ''			||
+  		details.employmentStatus === '' ||
+  		details.houseNumber === ''			||
+  		details.postcode === ''					|| 
+  		isNaN(annualIncomeNum)
+  	) {
+  		return false;
+  	}
+  	return true; 
 	}
 
   processForm(event) {
@@ -31,6 +52,12 @@ export default class Form extends Component {
 
   	const userDetails = this.state;
   	const { processUserDetails } = this.props;
+  	const formIsValid = this.validateForm(userDetails);
+  	
+  	if(!formIsValid) {
+  		return this.setState({errorText: 'Missing or incorrect information'});
+  	} 
+
   	return processUserDetails(userDetails);
   }
 
@@ -57,6 +84,11 @@ export default class Form extends Component {
 	render() {
 		return (      
       <form onSubmit={this.processForm}>
+      	{ 
+      		this.state.errorText !== '' && 
+      		<p className="error">{this.state.errorText}</p> 
+      	}
+
       	<p>Please enter the details below: </p>
         
         <SelectField 
@@ -103,7 +135,7 @@ export default class Form extends Component {
           />
         </div>
         <SelectField 
-          floatingLabelText="Employment Status" 
+          floatingLabelText="Employment" 
           onChange={this.handleChangeEmpStatus}
           value={this.state.employmentStatus} 
         >

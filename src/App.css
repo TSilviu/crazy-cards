@@ -11,3 +11,7 @@
 	margin-right: 5%;
 	padding: 2%;
 }
+
+.error {
+	color: red;
+}

@@ -34,7 +34,7 @@ class CardsDashboard extends React.Component {
 		this.state = {
 			selected: times(this.props.cards.length, constant(false)),
 			totalCredit: 0
-		}
+		};
 
 		this.generateCards = this.generateCards.bind(this);
 		this.handleCardClick = this.handleCardClick.bind(this);
@@ -46,11 +46,10 @@ class CardsDashboard extends React.Component {
 
 		selected[cardId] = !selected[cardId];
 
-		console.log(cards[cardId]);
 		const newTotal = selected[cardId] ?
-			totalCredit + cards[cardId].details.credit
-			:
+			totalCredit + cards[cardId].details.credit :
 			totalCredit - cards[cardId].details.credit
+
 		this.setState({selected: selected, totalCredit: newTotal});
 	}
 

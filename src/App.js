@@ -14,7 +14,7 @@ class App extends Component {
     this.state = {
       user: {},
       availableCards: [cards.anywhere]
-    }
+    };
 
     this.processUserDetails = this.processUserDetails.bind(this);
   }
